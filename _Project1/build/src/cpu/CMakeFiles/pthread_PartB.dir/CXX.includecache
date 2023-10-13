@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/utils.hpp
+iostream
+-
+cstdio
+-
+cstdlib
+-
+jpeglib.h
+-
+
+/nfsmnt/123100001/CSC4005-2023Fall/project1/src/cpu/pthread_PartB.cpp
+iostream
+-
+chrono
+-
+pthread.h
+-
+cmath
+-
+utils.hpp
+/nfsmnt/123100001/CSC4005-2023Fall/project1/src/cpu/utils.hpp
+omp.h
+-
+

@@ -1,0 +1,51 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_9632a/fast 
+/usr/bin/gmake -f CMakeFiles/cmTC_9632a.dir/build.make CMakeFiles/cmTC_9632a.dir/build
+gmake[1]: Entering directory `/nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9632a.dir/CheckSymbolExists.cxx.o
+/opt/rh/devtoolset-7/root/usr/bin/c++    -std=gnu++11 -o CMakeFiles/cmTC_9632a.dir/CheckSymbolExists.cxx.o -c /nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+Linking CXX executable cmTC_9632a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9632a.dir/link.txt --verbose=1
+/opt/rh/devtoolset-7/root/usr/bin/c++       CMakeFiles/cmTC_9632a.dir/CheckSymbolExists.cxx.o  -o cmTC_9632a 
+CMakeFiles/cmTC_9632a.dir/CheckSymbolExists.cxx.o: In function `main':
+CheckSymbolExists.cxx:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_9632a] Error 1
+gmake[1]: Leaving directory `/nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_9632a/fast] Error 2
+
+File /nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_0ab65/fast 
+/usr/bin/gmake -f CMakeFiles/cmTC_0ab65.dir/build.make CMakeFiles/cmTC_0ab65.dir/build
+gmake[1]: Entering directory `/nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0ab65.dir/CheckFunctionExists.cxx.o
+/opt/rh/devtoolset-7/root/usr/bin/c++    -DCHECK_FUNCTION_EXISTS=pthread_create   -std=gnu++11 -o CMakeFiles/cmTC_0ab65.dir/CheckFunctionExists.cxx.o -c /nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CheckLibraryExists/CheckFunctionExists.cxx
+Linking CXX executable cmTC_0ab65
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ab65.dir/link.txt --verbose=1
+/opt/rh/devtoolset-7/root/usr/bin/c++   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_0ab65.dir/CheckFunctionExists.cxx.o  -o cmTC_0ab65 -lpthreads 
+/opt/rh/devtoolset-7/root/usr/libexec/gcc/x86_64-redhat-linux/7/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [cmTC_0ab65] Error 1
+gmake[1]: Leaving directory `/nfsmnt/123100001/CSC4005-2023Fall/project1/build/CMakeFiles/CMakeTmp'
+gmake: *** [cmTC_0ab65/fast] Error 2
+
+
