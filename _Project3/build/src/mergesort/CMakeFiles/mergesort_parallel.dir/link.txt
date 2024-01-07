@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/mergesort_parallel.dir/parallel.cpp.o CMakeFiles/mergesort_parallel.dir/__/utils.cpp.o  -o mergesort_parallel -lgomp -lpthread 

@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/odd-even-sort_mpi.dir/mpi.cpp.o CMakeFiles/odd-even-sort_mpi.dir/__/utils.cpp.o  -o odd-even-sort_mpi -Wl,-rpath,/usr/lib64/mpich-3.2/lib /usr/lib64/mpich-3.2/lib/libmpicxx.so /usr/lib64/mpich-3.2/lib/libmpi.so 

@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/mergesort_sequential.dir/sequential.cpp.o CMakeFiles/mergesort_sequential.dir/__/utils.cpp.o  -o mergesort_sequential 

@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/bucketsort_sequential.dir/sequential.cpp.o CMakeFiles/bucketsort_sequential.dir/__/utils.cpp.o  -o bucketsort_sequential 

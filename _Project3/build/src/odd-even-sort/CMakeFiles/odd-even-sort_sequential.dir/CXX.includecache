@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/nfsmnt/123100001/CSC4005-2023Fall/project3/src/odd-even-sort/sequential.cpp
+iostream
+-
+vector
+-
+../utils.hpp
+/nfsmnt/123100001/CSC4005-2023Fall/project3/src/utils.hpp
+
+/nfsmnt/123100001/CSC4005-2023Fall/project3/src/utils.cpp
+utils.hpp
+/nfsmnt/123100001/CSC4005-2023Fall/project3/src/utils.hpp
+
+/nfsmnt/123100001/CSC4005-2023Fall/project3/src/utils.hpp
+fstream
+-
+iostream
+-
+vector
+-
+random
+-
+chrono
+-
+algorithm
+-
+

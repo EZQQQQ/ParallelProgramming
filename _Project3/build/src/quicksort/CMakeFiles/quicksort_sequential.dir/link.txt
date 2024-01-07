@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/quicksort_sequential.dir/sequential.cpp.o CMakeFiles/quicksort_sequential.dir/__/utils.cpp.o  -o quicksort_sequential 

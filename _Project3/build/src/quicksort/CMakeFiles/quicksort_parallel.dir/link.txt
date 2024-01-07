@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-7/root/usr/bin/c++     CMakeFiles/quicksort_parallel.dir/parallel.cpp.o CMakeFiles/quicksort_parallel.dir/__/utils.cpp.o  -o quicksort_parallel -lgomp -lpthread 
