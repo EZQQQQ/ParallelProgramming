@@ -1,8 +1,8 @@
 # ParallelProgramming
 
 # High-Level Overview of Project 1: Image Processing with Parallel Programming Models
-# Part A: RGB to Grayscale
-# Part B: RGB to Smooth Filtering
+Part A: RGB to Grayscale
+Part B: RGB to Smooth Filtering
 
 ## 1. Project Setup:
 - Utilizes CMake for project configuration.
