@@ -1,8 +1,8 @@
 # ParallelProgramming
 
 # High-Level Overview of Project 1: Image Processing with Parallel Programming Models
-Part A: RGB to Grayscale
-Part B: RGB to Smooth Filtering
+- Part A: RGB to Grayscale
+- Part B: RGB to Smooth Filtering
 
 ## 1. Project Setup:
 - Utilizes CMake for project configuration.
@@ -33,16 +33,3 @@ Part B: RGB to Smooth Filtering
 - **OpenACC:**
   - API for parallel programming, simplifying GPU code parallelization.
   - Uses directives for specifying parallel regions and data parallelism.
-
-## 3. Optimizations Implementation (Part B):
-- Detailed optimizations for each model, addressing specific image processing tasks.
-
-## 4. Experiment Findings:
-- Comparison of parallelization techniques in RGB to Grayscale and Smooth Filtering.
-- Performance variations across configurations, with SIMD and CUDA consistently excelling.
-- Consideration of speedup, efficiency, and specific parallelization model characteristics.
-
-## 5. Differences Between Part A and Part B:
-- Part B involves more computationally intensive smoothing operations.
-- Relative performance of parallelization techniques consistent between parts.
-- Emphasis on efficiency for complex tasks.
