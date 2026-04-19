@@ -1,191 +1,95 @@
-# ParallelProgramming
+# Parallel Programming
 
-# CMake Configuration
+This repository collects four parallel computing coursework projects covering CPU, distributed, and accelerator-based optimization techniques. Across the projects, the work explores how algorithm design changes when targeting SIMD instructions, multithreading, MPI, GPUs, and OpenACC-style acceleration.
 
-1. **Configuration:**
-   - Use CMake to set up the project's build environment.
-   - Navigate to the project directory (`../project1/build/`).
-   - Run `bash cmake ..` to generate necessary build files.
+## What This Repository Shows
 
-2. **Compilation:**
-   - Compile the project using the `make` command.
-   - Use parallel jobs with `bash make -j4` to speed up compilation.
-   - Links libraries and generates the executable binary.
+- low-level performance-oriented C and C++ programming
+- practical use of MPI, OpenMP, SIMD, CUDA-style thinking, and OpenACC workflows
+- benchmarking and experimentation across different parallelization strategies
+- translating algorithmic problems into CPU, cluster, and GPU execution models
 
-3. **Cluster Submission Script:**
-   - Utilize a submission script to run the program on the cluster.
-   - Example using `sbatch` command: `sh src/scripts/sbatch.sh & sh src/scripts/sbatch_bonus.sh`.
-   - Specifies job parameters like CPU cores, memory requirements, and the executable name.
-   - Responsible for launching the program on cluster nodes with specified configurations.
+## Tech Used
 
-# High-Level Overview of Project 1: Image Processing with Parallel Programming Models
-- Part A: RGB to Grayscale
-- Part B: RGB to Smooth Filtering
+- C and C++
+- CMake
+- MPI
+- OpenMP
+- SIMD optimization
+- OpenACC
+- SLURM job scripts
 
-## Parallel Programming Models:
-- **SIMD (Single Instruction, Multiple Data):**
-  - Processes multiple data elements simultaneously.
-  - Utilizes AVX2 and AVX-512 instructions for vectorized operations.
+## Projects
 
-- **MPI (Message Passing Interface):**
-  - Enables parallelism with distributed memory across cluster nodes.
-  - Uses message passing for communication between processes.
+### Project 1: Image processing
 
-- **OpenMP:**
-  - Facilitates parallelism in shared-memory systems.
-  - Allows developers to specify parallel regions and constructs.
+Focuses on accelerating image-processing tasks such as RGB-to-grayscale conversion and smoothing filters using multiple parallel programming models. The original notes reference SIMD, MPI, OpenMP, Pthreads, CUDA, and OpenACC as the target optimization approaches explored in this part of the coursework.
 
-- **Pthreads (POSIX Threads):**
-  - Low-level threading library for task-level parallelism.
-  - Requires manual thread creation and management.
+### Project 2: Matrix multiplication
 
-- **CUDA (Compute Unified Device Architecture):**
-  - Parallel computing platform for GPU processing.
-  - Employs data-level and thread-level parallelism.
+Explores matrix multiplication through memory-locality and parallel-computing techniques, including:
 
-- **OpenACC:**
-  - API for parallel programming, simplifying GPU code parallelization.
-  - Uses directives for specifying parallel regions and data parallelism.
+- blocking and tiling for cache efficiency
+- loop-order changes for performance tuning
+- SIMD-based data-level parallelism
+- OpenMP-based thread-level parallelism
+- MPI-based process-level parallelism
+- GPU-oriented execution ideas reflected in the performance and submission materials
 
-# High-Level Overview of Project 2: Matrix Multiplication
+Relevant source files are in `_Project2/src/`, including implementations such as `naive.cpp`, `locality.cpp`, `simd.cpp`, `openmp.cpp`, and `mpi.cpp`.
 
-## Parallel Programming Models: Memory Locality
+### Project 3: Parallel sorting
 
-## Blocking (Tiling):
-- **Description:**
-  - Divides matrices into smaller blocks (tiles) for cache locality.
-  - Promotes cache locality and reduces cache misses.
+Implements and analyzes multiple sorting strategies under parallel execution models, including:
 
-## Data-Level Parallelism:
+- MPI-based quicksort
+- MPI-based bucket sort
+- odd-even transposition sort with inter-process communication
+- OpenMP task-based quicksort
 
-### Blocking (Tiling):
-- **Description:**
-  - Dynamically adjusts `BLOCK_SIZE` based on matrix dimensions.
+This project emphasizes workload distribution, merge strategies, and synchronization between parallel workers.
 
-- **Change Loop Order:**
-  - Uses SIMD instructions for parallelizing matrix multiplication.
+### Project 4: Neural network training
 
-## Thread-Level Parallelism:
+Focuses on machine learning workloads optimized for parallel systems using MNIST-style training tasks. The project includes:
 
-### Blocking (Tiling):
-- **Description:**
-  - Uses OpenMP directives for outer loop parallelization.
+- softmax regression training
+- two-layer neural network training
+- OpenACC-accelerated softmax and neural network variants
+- SLURM scripts for cluster and GPU execution
 
-- **Change Loop Order:**
-  - OpenMP directives parallelize computation within each block.
+Key source files are in `_Project4/src/`, and the repository includes job scripts such as `_Project4/sbatch.sh` and `_Project4/test.sh`.
 
-## Process-Level Parallelism:
+## Repository Layout
 
-### Blocking (Tiling):
-- **Description:**
-  - MPI processes dynamically balance load.
+- `_Project1/`: image-processing project
+- `_Project2/`: matrix multiplication project with source, sample matrices, and performance data
+- `_Project3/`: sorting project with source and submission assets
+- `_Project4/`: neural network training project with cluster scripts and accelerator-oriented implementations
 
-- **Change Loop Order:**
-  - Uses MPI processes for parallel execution.
+## Build and Run
 
-## CUDA Kernel for Matrix Multiplication:
-- **Description:**
-  - Offloads matrix multiplication to GPU using CUDA kernel.
-  - Utilizes shared memory for storing submatrices.
+Each project is organized as its own CMake-based unit.
 
-# High-Level Overview of Project 3: Sorting Algorithm
+Typical local workflow:
 
-## Task 1: Parallel Quick Sort with MPI
+```bash
+cd _Project2
+mkdir -p build
+cd build
+cmake ..
+make -j4
+```
 
-### Parallelization:
-- Uses MPI for sorting across multiple processes.
-- Each process performs a local quicksort on a vector segment.
+For cluster-based runs, use the included SLURM scripts where available, for example:
 
-### Key Functions:
-- `partition`: Divides a vector based on a pivot.
-- `sequentialquickSort`: Implements sequential quicksort.
-- `quickSort`: Distributes the vector among MPI processes, performs parallel quicksort, and merges sorted segments.
+```bash
+cd _Project4
+sbatch sbatch.sh
+```
 
-### Strategy:
-- MPI processes handle local sorting.
-- Results are merged on the master process.
+## Notes
 
-## Task 2: Parallel Bucket Sort with MPI
-
-### Parallelization:
-- Each process performs bucket sort on its data.
-- Sorted buckets are gathered and merged on the master process.
-
-### Bucket Sort Function:
-- `bucketSort`: Distributes elements into local buckets, sorts each using insertion sort, gathers bucket size info, and reconstructs the sorted vector.
-
-### Strategy:
-- Independent sorting in buckets.
-- Merging sorted buckets reconstructs the final vector.
-
-## Task 3: Parallel Odd-Even Sort
-
-### Odd-Even Sorting:
-- Each process sorts its local array using sequential odd-even sort.
-- Odd and even phases involve communication and merging with neighboring processes.
-
-### Functions:
-- `oddEvenSort`: Orchestrates parallel odd-even sort using MPI.
-- `oddEvenIteration`: One iteration of parallel odd-even transposition sort.
-- `mergeSplitLow` and `mergeSplitHigh`: Merges smallest and largest elements.
-
-### Strategy:
-- Independent sorting with exchange and merge.
-- Results are gathered for broadcasting.
-
-## Task 5: Dynamic Thread-Level Parallel Quick Sort (OpenMP Tasking)
-
-### OpenMP Parallelization:
-- Uses OpenMP directives for parallel quicksort.
-
-### Features:
-- #pragma directives for parallel region and task creation.
-- Task synchronization with #pragma omp taskwait.
-- Falls back to sequential quicksort for small arrays.
-
-### Strategy:
-- Concurrent task execution using multiple threads.
-- Utilizes OpenMP for multicore processors.
-
-# High-Level Overview of Project 4: Machine Learning (Neural Network Training)
-
-## Task 1: Train MNIST with Softmax Regression
-
-### Purpose:
-- Train a softmax regression model on MNIST dataset.
-- Functions handle batch processing, one-hot encoding, softmax normalization, gradient computation, and evaluation.
-
-### Key Functions:
-- `softmax_regression_epoch_cpp`: Single training epoch with SGD.
-- `train_softmax`: Fully trains softmax classifier over multiple epochs.
-
-## Task 2: Accelerate Softmax with OpenACC
-
-### Purpose:
-- Utilize OpenACC directives for parallelization and optimization.
-- Improve execution time efficiency, particularly on GPUs.
-
-### Key Features:
-- Loop parallelization, data management, and data parallelism.
-- Independent loop optimization and GPU acceleration.
-
-## Task 3: Train MNIST with Neural Network
-
-### Purpose:
-- Implement training and evaluation processes for a two-layer neural network.
-- Emphasize simplicity and clarity in code structure.
-
-### Key Functions:
-- `nn_epoch_cpp`: Single epoch of SGD for a two-layer neural network.
-- `evaluate_nn`: Evaluate network performance on a dataset.
-- `train_nn`: Fully train a neural network over multiple epochs.
-
-## Task 4: Accelerate Neural Network with OpenACC
-
-### Purpose:
-- Optimize memory usage, minimize data transfer overhead, and parallelize computationally intensive tasks.
-- Improve efficiency, especially on parallel architectures like GPUs.
-
-### Key Features:
-- Data movement, parallelization of loops, collapse and independent clauses.
-- Memory optimization, parallelization of matrix operations, and explicit memory management.
+- the repository includes both source code and coursework submission materials
+- some project folders contain generated build files, reports, and archived submission artifacts
+- this repo is best read as a record of hands-on systems and high-performance computing coursework rather than a single standalone application
